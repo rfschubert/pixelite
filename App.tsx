@@ -185,32 +185,32 @@ function App() {
     setQuickResult(null);
     setShowToast(false);
     
-    setTimeout(async () => {
-      try {
-        const qualityVal = 0.8;
-        const blob = await compressToWebP(img, { quality: qualityVal });
-        const savings = ((originalFile.size - blob.size) / originalFile.size) * 100;
-        
-        const result: CompressionResult = {
-          originalSize: originalFile.size,
-          compressedSize: blob.size,
-          blob,
-          savings: Math.max(0, parseFloat(savings.toFixed(1))),
-          fileName: originalFile.name
-        };
+    // We remove the setTimeout here to ensure the download is triggered
+    // as directly as possible from the user's drop event (microtask queue)
+    try {
+      const qualityVal = 0.8;
+      const blob = await compressToWebP(img, { quality: qualityVal });
+      const savings = ((originalFile.size - blob.size) / originalFile.size) * 100;
+      
+      const result: CompressionResult = {
+        originalSize: originalFile.size,
+        compressedSize: blob.size,
+        blob,
+        savings: Math.max(0, parseFloat(savings.toFixed(1))),
+        fileName: originalFile.name
+      };
 
-        setQuickResult(result);
-        downloadBlob(blob, originalFile.name);
-        setQuickProcessing(false);
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 5000);
+      setQuickResult(result);
+      downloadBlob(blob, originalFile.name);
+      setQuickProcessing(false);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 5000);
 
-      } catch (e) {
-        console.error(e);
-        setQuickProcessing(false);
-        alert(t.errorCompression);
-      }
-    }, 600);
+    } catch (e) {
+      console.error(e);
+      setQuickProcessing(false);
+      alert(t.errorCompression);
+    }
   };
 
   // Editor Preview Logic
