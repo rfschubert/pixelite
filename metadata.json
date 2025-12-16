@@ -1,0 +1,5 @@
+{
+  "name": "PixelLite",
+  "description": "A privacy-focused, browser-based WebP image converter and optimizer. Features drag-and-drop instant conversion and an advanced comparison editor.",
+  "requestFramePermissions": []
+}
