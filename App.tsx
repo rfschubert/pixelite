@@ -642,7 +642,7 @@ function App() {
         
         <div className="flex items-center gap-4">
            <LanguageSelector currentLang={lang} onSelect={setLang} />
-           <div className="hidden md:block text-xs font-medium text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">
+           <div className="hidden md:block text-xs font-medium text-purple-400 bg-purple-500/10 border border-purple-500/30 px-3 py-1 rounded-full">
              {t.clientSideOnly}
            </div>
         </div>
@@ -656,7 +656,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-zinc-600 text-sm">
+      <footer className="py-8 text-center text-purple-400 text-sm">
         <p className="flex items-center justify-center gap-2 mb-2">
            {t.footer}
         </p>
